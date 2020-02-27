@@ -11,7 +11,7 @@ while :; do
 
 	printf '%s,%s\n' "$name" "$ratio" >>"$DB"
 
-	sort -k2 -o "$DB" "$DB"
+	sort -t, -k2 -o "$DB" "$DB"
 
 	column -s, -t "$DB"
 done
