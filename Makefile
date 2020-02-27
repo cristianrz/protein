@@ -1,4 +1,4 @@
-DEST = ${HOME}/bin
+DEST = ${HOME}
 
 all: protein
 
@@ -7,5 +7,6 @@ protein: protein.sh
 	chmod +x protein
 
 install:
-	mv protein $(DEST)
+	mkdir $(DEST)/bin
+	mv protein $(DEST)/bin
 	
