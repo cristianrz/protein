@@ -7,6 +7,6 @@ protein: protein.sh
 	chmod +x protein
 
 install:
-	mkdir $(DEST)/bin
+	mkdir -p $(DEST)/bin
 	mv protein $(DEST)/bin
 	
