@@ -1,13 +1,6 @@
 #!/bin/sh
 
-cleanup(){
-	mv "$TMP" "$db"
-}
-
-TMP="$(mktemp)"
-trap 'cleanup' EXIT
-
-printf 'Database: ' && read -r db
+DB="db.csv"
 
 while :; do
 	printf 'Name: ' && read -r name
@@ -15,7 +8,10 @@ while :; do
 	printf 'Prot: ' && read -r prot
 
 	ratio="$(printf '%s/%s\n' "$prot" "$cal" | bc -l)"
-	
-	printf '%s,%s\n' "$name" "$ratio" >> "$TMP"
-	column -s, -t "$TMP" | sort -k2
+
+	printf '%s,%s\n' "$name" "$ratio" >>"$DB"
+
+	sort -k2 -o "$DB" "$DB"
+
+	column -s, -t "$DB"
 done
